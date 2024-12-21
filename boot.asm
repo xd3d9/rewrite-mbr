@@ -22,12 +22,12 @@ mov cl, 0x02                         ; Sawkisi sekciis nomeri, CHS misamartis da
 mov dl, [BOOT_DISK]                  ; Itvirteba chatvirtvis diskis nomeri DLshi
 int 0x13                             ; BIOS-is interfeisis gamodzakheba kernelis chasatvirtad
 
-; Switch to text mode.
+; Gadartva teqstur rejimshi
 mov ah, 0x0                          ; BIOS INT 10h: fuqncia 0 - video rejimis dakeneba.
 mov al, 0x3                          ; Ayenebs 80x25 teqstur rejimshi.
 int 0x10                             ; BIOS-is interfeisis gamodzakheba video rejimis shesatsvlelad
 
-; Prepare for protected mode.
+; Dacul rejimistvis momzadeba
 CODE_SEG equ GDT_code - GDT_start    ; Kodis segmentis ofseti globaluri aghtserilebis cxrilshi GDT-shi.
 DATA_SEG equ GDT_data - GDT_start    ; Monacemta segmentis ofseti GDT-shi.
 
@@ -85,6 +85,6 @@ start_protected_mode:
 
     jmp KERNEL_LOCATION              ; Gadakhtoma kernelis sawkis misamartze
 
-; Boot sector padding and signature.
+; Chatvirtvis sektoris shigtavsi da xelmowera
 times 510-($-$$) db 0                ; Shevseba nulebit, rata butseqtori iyos 512 baiti
 dw 0xaa55                            ; Butis khelmotsera, BIOSistvis autsilebelia
