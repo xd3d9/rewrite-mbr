@@ -1,0 +1,9 @@
+nasm "boot.asm" -f bin -o "kernel_bin/boot.bin"
+nasm "entry.asm" -f elf -o "kernel_bin/entry.o"
+nasm "0.asm" -f bin -o "kernel_bin/0.bin"
+
+i386-elf-gcc -ffreestanding -m32 -g -c "kernel.cpp" -o "kernel_bin/kernel.o"
+i386-elf-ld -o "kernel_bin/full_kernel.bin" -Ttext 0x1000 "kernel_bin/entry.o" "kernel_bin/kernel.o" --oformat binary
+cat "kernel_bin/boot.bin" "kernel_bin/full_kernel.bin" "kernel_bin/0.bin"  > "output.bin"
+
+qemu-system-x86_64 -drive format=raw,file="output.bin",index=0,if=floppy,  -m 128M
