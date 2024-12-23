@@ -24,7 +24,7 @@ int 0x13                             ; BIOS-is interfeisis gamodzakheba kernelis
 
 ; Switch to text mode.
 mov ah, 0x0                          ; BIOS INT 10h: fuqncia 0 - video rejimis dakeneba.
-mov al, 0x3                          ; Ayenebs 80x25 teqstur rejimshi.
+mov al, 0x13                         ; Ayenebs 80x25 video rejimshi.
 int 0x10                             ; BIOS-is interfeisis gamodzakheba video rejimis shesatsvlelad
 
 ; Prepare for protected mode.
