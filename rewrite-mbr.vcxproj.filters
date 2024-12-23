@@ -27,6 +27,9 @@
     <None Include="0.asm">
       <Filter>bootloader\kernel sectors</Filter>
     </None>
+    <None Include="README.md">
+      <Filter>bootloader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bootloader.h">
